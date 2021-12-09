@@ -1,10 +1,18 @@
-import React from 'react'
+import {HStack, Input, Button} from '@chakra-ui/react'
 
 const AddToDo = () => {
-    return (
-        <div>
+    
+    const handleSubmit = (e) => {
             
-        </div>
+    }
+    return (
+        <form onSubmit = {handleSubmit}>
+            <HStack mt={4}>
+                <Input variant='filled'placeholder='Add an item'/>
+                <Input variant='filled'placeholder='Amount' maxWidth='100px'/>
+                <Button colorScheme="orange" px={8} type="submit">Add Item</Button>
+            </HStack>
+        </form>
     )
 }
 
