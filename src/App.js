@@ -58,7 +58,12 @@ const addIngredient = (ingredient) =>{
   return (
     <div className="App">
       <VStack p={4}>
-        <IconButton icon={<FaSun/>} isRound={true} size='lg' alignSelf='flex-end'/>
+        <IconButton 
+        icon={<FaSun/>} 
+        isRound={true} 
+        size='lg' 
+        alignSelf='flex-end'
+        />
         <Container centerContent>
           <VStack mb={16}>
             <Box maxWidth={'300px'}>
@@ -73,6 +78,7 @@ const addIngredient = (ingredient) =>{
               fontWeight='extrabold' 
               size='2xl' 
               color = 'orange.500' 
+              textShadow='4px 4px #00008B'
             >
               Justin & Kana's Cooking Journal
             </Heading>
@@ -86,7 +92,10 @@ const addIngredient = (ingredient) =>{
         >
           Egg McJustin:
         </Heading>
-        <TodoList ingredients={ingredients} deleteIngredient={deleteIngredient} />
+        <TodoList 
+          ingredients={ingredients} 
+          deleteIngredient={deleteIngredient} 
+        />
         <AddToDo addIngredient ={addIngredient}/>
         <StepList />
       </VStack>
