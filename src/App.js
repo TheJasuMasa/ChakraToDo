@@ -80,7 +80,7 @@ const addIngredient = (ingredient) =>{
               color = 'orange.500' 
               textShadow='4px 4px #00008B'
             >
-              Justin & Kana's Cooking Journal
+              Kana & Justin's Cooking Journal
             </Heading>
           </VStack>
         </Container>
