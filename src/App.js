@@ -1,7 +1,7 @@
 import {Heading, Container} from '@chakra-ui/react'
 import TodoList from './components/TodoList'
 import AddToDo from './components/AddToDo'
-import {VStack, IconButton, Image, Box,HStack} from '@chakra-ui/react'
+import {VStack, IconButton, Image, Box, useColorMode, Tooltip} from '@chakra-ui/react'
 import {FaSun,FaMoon} from 'react-icons/fa'
 import {useState, useEffect} from 'react'
 import {default as chef} from './img/chef.svg'
@@ -41,6 +41,8 @@ function App() {
     },
 ];
 
+const {colorMode, toggleColorMode} = useColorMode()
+
 const [ingredients, setIngredients] = useState(initialIngredients)
 
 const deleteIngredient = (id) => {
@@ -59,10 +61,24 @@ const addIngredient = (ingredient) =>{
     <div className="App">
       <VStack p={4}>
         <IconButton 
-        icon={<FaSun/>} 
+        icon={colorMode === 'light' ?  
+          <Tooltip 
+            label ='Change to dark mode'
+            placement='bottom'
+            openDelay = {100}
+          >
+            <span><FaSun/></span>
+          </Tooltip> : 
+          <Tooltip 
+            label ='Change to light mode'
+            placement = 'bottom'
+            openDelay = {100}
+          >
+            <span><FaMoon/></span></Tooltip>} 
         isRound={true} 
         size='lg' 
         alignSelf='flex-end'
+        onClick = {toggleColorMode}
         />
         <Container centerContent>
           <VStack mb={16}>
@@ -77,15 +93,14 @@ const addIngredient = (ingredient) =>{
               marginRight={8}
               fontWeight='extrabold' 
               size='2xl' 
-              color = 'orange.500' 
-              textShadow='4px 4px #00008B'
+              color = {colorMode === 'light' ? 'orange.500' : 'orange.200'} 
+              textShadow={colorMode === 'light' && '3px 3px #00008B'}
             >
               Kana & Justin's Cooking Journal
             </Heading>
           </VStack>
         </Container>
         <Heading
-          mx={8}
           fontWeight='extrabold' 
           size='xl' 
           color = 'orange.400'
@@ -94,10 +109,11 @@ const addIngredient = (ingredient) =>{
         </Heading>
         <TodoList 
           ingredients={ingredients} 
-          deleteIngredient={deleteIngredient} 
+          deleteIngredient={deleteIngredient}
+          colorMode = {colorMode} 
         />
-        <AddToDo addIngredient ={addIngredient}/>
-        <StepList />
+        <AddToDo addIngredient ={addIngredient} colorMode ={colorMode}/>
+        <StepList colorMode ={colorMode}/>
       </VStack>
     </div>
   );

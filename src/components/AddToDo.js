@@ -1,10 +1,13 @@
-import {Container, HStack, Input, Button} from '@chakra-ui/react'
+import {Container, HStack, Input, Button, useToast} from '@chakra-ui/react'
 import {useState} from 'react'
 import {nanoid} from 'nanoid'
 
 
+//Add ability to save on local storage (later to push to api '45:42' 'yoursTRULY')
+
 const AddToDo = ({addIngredient}) => {
 
+    const toast = useToast()
 
     const [content, setContent] = useState('')
     const [amount, setAmount] = useState('')
@@ -16,8 +19,30 @@ const AddToDo = ({addIngredient}) => {
                 body: content,
                 amt: amount
             }
+            if(!content){
+               toast({
+                   title: 'Item field empty',
+                   status: 'error',
+                   duration: 4000,
+                   isClosable: true,
+               }) ;
+               return
+            }
+
+            if(!amount){
+                toast({
+                    title: 'Amount field empty',
+                    status: 'error',
+                    duration: 6000,
+                    isClosable: true,
+                }) ;
+                return
+             }
+            
             addIngredient(ingredient)
-            console.log(ingredient)
+            setContent('')
+            setAmount('')
+
     }
 
     return (
@@ -41,7 +66,7 @@ const AddToDo = ({addIngredient}) => {
                             setAmount(e.target.value)
                         }}
                     />
-                    <Button colorScheme="orange" px={8} type="submit">Add Item</Button>
+                    <Button colorScheme="blue" px={8} type="submit">Add Item</Button>
                 </HStack>
             </Container>
         </form>

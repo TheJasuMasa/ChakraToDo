@@ -1,8 +1,8 @@
-import {StackDivider, Container, VStack, Heading, Spacer, HStack, Text, IconButton} from '@chakra-ui/react'
+import {StackDivider, Container, VStack, Heading, Spacer, HStack, Text, IconButton, useColorMode} from '@chakra-ui/react'
 import {FaTrash} from 'react-icons/fa';
 import {useState} from 'react'
 
-const StepList = () => {
+const StepList = ({colorMode}) => {
 
     // const getSmallestStep = (items) =>{
     //     items.forEach(item => {
@@ -61,8 +61,8 @@ const StepList = () => {
         >
             <Heading
                 fontWeight='extrabold' 
-                size='m' 
-                color = 'orange.600'
+                size='xl' 
+                color = {colorMode === 'light' ? 'orange.600' : 'orange.300'}
             >
                 Steps
             </Heading>
@@ -71,7 +71,7 @@ const StepList = () => {
                 <Heading
                 fontWeight='extrabold'
                 size='m'
-                color = 'orange.400'
+                color = {colorMode === 'light' ? 'orange.500' : 'orange.200'}
                 p={4}
                 >
                     {step.step}

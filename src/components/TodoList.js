@@ -1,18 +1,24 @@
-import {Heading, VStack, HStack, Text, IconButton, StackDivider, Spacer, Badge} from '@chakra-ui/react'
+import {Box,Heading, VStack, HStack, Text, IconButton, StackDivider, Spacer, Badge} from '@chakra-ui/react'
 import {FaTrash} from 'react-icons/fa';
 
-const TodoList = ({ingredients, deleteIngredient}) => {
+const TodoList = ({ingredients, deleteIngredient, colorMode}) => {
 
     if (!ingredients.length){
         return (
-            <Badge colorScheme='yellow' padding={4} borderRadius={'lg'}>
+        <>
+            <Box h={4}/>
+            <Badge 
+                colorScheme='yellow' 
+                padding={4} 
+                borderRadius={'lg'}
+            >
                 <Text>No ingredients added yet</Text>
             </Badge>
+        </>
         )
     }
 
-    return (
-        
+    return (       
         <VStack
             divider={<StackDivider />}
             borderColor='gray.100'
@@ -25,8 +31,8 @@ const TodoList = ({ingredients, deleteIngredient}) => {
         >
             <Heading
                 fontWeight='extrabold' 
-                size='m' 
-                color = 'orange.600'
+                size='xl' 
+                color = {colorMode === 'light' ? 'orange.600' : 'orange.300'}
             >Ingredients</Heading>
             {ingredients.map((ingredient) => (
                <HStack key ={ingredient.id}>
