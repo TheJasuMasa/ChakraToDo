@@ -88,6 +88,7 @@ const addIngredient = (ingredient) =>{
               />
             </Box>
             <Heading 
+              align ='center'
               centerContent
               marginBottom={8}
               marginRight={8}
